@@ -11,7 +11,7 @@ const port = 3001;
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-vercel-app.vercel.app"
+  "https://llm-chat-rho.vercel.app/"
 ];
 
 app.use((req, res, next) => {
