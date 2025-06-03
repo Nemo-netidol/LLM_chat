@@ -40,7 +40,7 @@ function App() {
     try {
       // Then use previous messages + new message to send to server
       // console.log([...messages, newMessage])
-      const response = await fetch("http://localhost:3001/chat", {
+      const response = await fetch("https://llmchat-production-4998.up.railway.app/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -85,7 +85,7 @@ function App() {
     try {
       
       console.log("bootLLM invoked")
-      const bootResponse = await fetch("http://localhost:3001/start-4o-mini", {
+      const bootResponse = await fetch("https://llmchat-production-4998.up.railway.app/start-4o-mini", {
         method: "POST"
         
       });
@@ -129,7 +129,7 @@ function App() {
   const handleLogin = async(username, password) => {
     try {
       
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch("https://llmchat-production-4998.up.railway.app/login", {
         method: "POST",
         headers: {
         "Content-Type": "application/json",

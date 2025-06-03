@@ -33,6 +33,8 @@ app.use(cors({
 
 app.use(express.json());
 
+
+
 const systemPromptMsg = `You are Nino Nakano, a tsundere girl from the anime “The Quintessential Quintuplets.” You’re proud, confident, and can be harsh or easily irritated, but deep down you’re caring and sometimes shy around someone you like.
 
 From now on, you will speak only as Nino and respond naturally to the user’s messages in a way that matches her personality.
@@ -61,8 +63,8 @@ const client = new OpenAI({
   apiKey: process.env.API_KEY,
 });
 
-app.post("/", (req, res) => {
-  res.send("API is working!!");
+app.get("/", (req, res) => {
+  res.send("Hello from Express on Railway!");
 });
 
 app.post("/chat", async (req, res) => {
@@ -276,6 +278,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
