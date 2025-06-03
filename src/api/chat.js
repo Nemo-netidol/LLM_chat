@@ -9,7 +9,12 @@ const app = express();
 const port = 3001;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin: "https://llm-chat-r28vx7m6c-nemo-netidols-projects.vercel.app/",
+    credentials: true
+  }
+));
 
 
 const systemPromptMsg = `You are Nino Nakano, a tsundere girl from the anime “The Quintessential Quintuplets.” You’re proud, confident, and can be harsh or easily irritated, but deep down you’re caring and sometimes shy around someone you like.
