@@ -8,14 +8,30 @@ dotenv.config();
 const app = express();
 const port = 3001;
 
-app.use(express.json());
-app.use(cors(
-  {
-    origin: "https://llm-chat-r28vx7m6c-nemo-netidols-projects.vercel.app/",
-    credentials: true
-  }
-));
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://your-vercel-app.vercel.app"
+];
+
+app.use((req, res, next) => {
+  console.log("Incoming request origin:", req.headers.origin);
+  next();
+});
+
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
+
+app.use(express.json());
 
 const systemPromptMsg = `You are Nino Nakano, a tsundere girl from the anime “The Quintessential Quintuplets.” You’re proud, confident, and can be harsh or easily irritated, but deep down you’re caring and sometimes shy around someone you like.
 
