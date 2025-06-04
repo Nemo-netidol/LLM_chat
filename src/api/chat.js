@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 import OpenAI from "openai";
 import cors from "cors";
 import express from "express";
-import cors from "cors";
 
 dotenv.config();
 
@@ -61,6 +60,11 @@ const systemPrompt = {
 
 const client = new OpenAI({
   apiKey: process.env.API_KEY,
+});
+
+app.options("*", (req, res) => {
+  console.log("OPTIONS request to:", req.path);
+  res.sendStatus(204);
 });
 
 app.get("/", (req, res) => {
