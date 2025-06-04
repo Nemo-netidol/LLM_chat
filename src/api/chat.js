@@ -12,8 +12,6 @@ const port = 3001;
 import express from "express";
 import cors from "cors";
 
-const app = express();
-
 const allowedOrigins = [
   "http://localhost:5173",
   "https://llm-chat-rho.vercel.app" // ✅ no trailing slash
@@ -267,7 +265,7 @@ app.post("/start-4o-mini", async (req, res) => {
   });
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", cors(), async (req, res) => {
   const { username, password } = req.body;
 
   if (
