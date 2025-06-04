@@ -2,15 +2,14 @@ import express from "express";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import cors from "cors";
+import express from "express";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
-const port = 3001;
+// const port = 3001;
 
-
-import express from "express";
-import cors from "cors";
 
 const allowedOrigins = [
   "http://localhost:5173",
@@ -26,12 +25,10 @@ const corsOptions = {
     }
   },
   credentials: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  allowedHeaders: "Content-Type,Authorization",
 };
 
+
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); 
 app.use(express.json());
 
 
@@ -65,23 +62,6 @@ const client = new OpenAI({
 
 app.get("/", (req, res) => {
   res.send("Hello from Express on Railway!");
-});
-
-
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  }
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204); // 👈 This handles the preflight request
-  }
-
-  next();
 });
 
 
@@ -283,18 +263,8 @@ app.post("/start-4o-mini", async (req, res) => {
   });
 });
 
-app.options("/login", (req, res) => {
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-    res.header("Access-Control-Allow-Credentials", "true");
-    res.header("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  }
-  return res.sendStatus(204); // No content for preflight
-});
 
-app.post("/login", cors(), async (req, res) => {
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   if (
@@ -307,7 +277,7 @@ app.post("/login", cors(), async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
