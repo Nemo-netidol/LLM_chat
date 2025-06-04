@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import cors from "cors";
-import express from "express";
 
 dotenv.config();
 
@@ -10,27 +9,10 @@ const app = express();
 // const port = 3001;
 
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://llm-chat-rho.vercel.app" 
-];
-
-const corsOptions = {
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // explicitly allow OPTIONS
-  allowedHeaders: ["Content-Type", "Authorization"],     // allow these headers
-};
 
 
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use(cors());
+
 app.use(express.json());
 
 
@@ -62,13 +44,9 @@ const client = new OpenAI({
   apiKey: process.env.API_KEY,
 });
 
-app.options("*", (req, res) => {
-  console.log("OPTIONS request to:", req.path);
-  res.sendStatus(204);
-});
 
 app.get("/", (req, res) => {
-  res.send("Hello from Express on Railway!");
+  res.send("This API work!");
 });
 
 
@@ -284,7 +262,8 @@ app.post("/login", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 8080;
+const PORT = 3001;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
