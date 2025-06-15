@@ -8,7 +8,7 @@ dotenv.config();
 console.log(process.env.API_KEY)
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
@@ -20,7 +20,7 @@ const client = new OpenAI({
 app.post("/health", (req, res) => {
   console.log("Health check...")
   res.json({
-    "healh": "API is working"
+    "health": "API is working"
   })
 })
 
