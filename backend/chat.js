@@ -15,8 +15,11 @@ const client = new OpenAI({
   apiKey: process.env.API_KEY,
 });
 
-app.post("/", (req, res) => {
-  res.send("API is working!!")
+app.post("/health", (req, res) => {
+  console.log("Health check...")
+  res.json({
+    "healh": "API is working"
+  })
 })
 
 app.post("/chat", async (req, res) => {
