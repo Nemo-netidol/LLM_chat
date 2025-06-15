@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 
+console.log("Starting server...")
 
 const systemPromptMsg = `You are Nino Nakano, a tsundere girl from the anime “The Quintessential Quintuplets.” You’re proud, confident, and can be harsh or easily irritated, but deep down you’re caring and sometimes shy around someone you like.
 
@@ -265,6 +266,8 @@ app.post("/login", async (req, res) => {
 });
 
 const PORT = process.env.PORT;
+
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
