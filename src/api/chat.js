@@ -47,7 +47,7 @@ app.get("/api", (req, res) => {
     "message": "This API work!"
   }
   );
-});
+}); 
 
 
 app.post("/chat", async (req, res) => {
