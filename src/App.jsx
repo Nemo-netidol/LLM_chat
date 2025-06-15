@@ -12,6 +12,9 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
+  const API_URL = process.env.RAILWAY_API_URL;
+
+
   const Emote = {
     idle: "https://media1.tenor.com/m/09mZ-hWCCY4AAAAC/the-quintessential-quintuplets-gotubun-no-hanayome.gif",
     happy: "https://media1.tenor.com/m/wbVB2qsdMsYAAAAC/aa.gif",
