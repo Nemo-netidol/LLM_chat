@@ -42,9 +42,10 @@ const client = new OpenAI({
 });
 
 
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({
-    "message": "This API work!"}
+    "message": "This API work!"
+  }
   );
 });
 
